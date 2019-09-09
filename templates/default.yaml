@@ -1,0 +1,5 @@
+openapi: 3.0.1
+info:
+  title: NBA Stats API
+  description: Documentation for the stats.nba.com API
+  version: "0.1.0"
