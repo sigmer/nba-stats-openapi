@@ -1,5 +1,13 @@
-openapi: 3.0.1
-info:
-  title: NBA Stats API
-  description: Documentation for the stats.nba.com API
-  version: "0.1.0"
+components:
+  parameters:
+    LeagueID:
+      description: "NBA=00, ABA=01"
+    GameID:
+      description: "002<YY-1><Game Number> (eg. 0021600001, 2017 Season First Game)"
+    Season:
+      description: "YYYY-YY (eg. 1995-96)"
+  schemas:
+    LeagueID:
+      enum: ["00", "01"]
+    Season:
+      pattern: ^\d{4}-\d{2}$
