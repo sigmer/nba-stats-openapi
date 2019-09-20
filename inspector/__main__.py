@@ -125,7 +125,7 @@ def handle_endpoint(doc, endpoint):
 def get_endpoint(endpoint, params={}):
     endpoint_url = ''.join([base_url, base_path, '/', endpoint])
     response = requests.get(endpoint_url, params=params,
-                            headers=headers, timeout=5)
+                            headers=headers, timeout=30)
     # pause after each request so we don't hit the rate limit
     time.sleep(1)
     return response
