@@ -16,12 +16,12 @@ log_level = getattr(logging, args.log.upper(), logging.WARN)
 logging.basicConfig(format='%(levelname)s: %(message)s', level=log_level)
 logger = logging.getLogger(__name__)
 
-base_url = 'http://stats.nba.com'
+base_url = 'https://stats.nba.com'
 base_path = '/stats'
 headers = {
     'User-Agent': 'nba-stats-inspector/0.1.0',
     'Accept': '*/*',
-    'Accept-Encoding': 'gzip, deflate',
+    # 'Accept-Encoding': 'gzip, deflate',
     'Accept-Language': 'en-US,en;q=0.7'
 }
 

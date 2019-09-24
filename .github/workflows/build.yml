@@ -46,4 +46,4 @@ jobs:
       - name: Generate doc
         timeout-minutes: 20
         run: |
-          python -m inspector --log INFO
+          python -m inspector --log DEBUG
