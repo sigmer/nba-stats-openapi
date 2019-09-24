@@ -18,11 +18,19 @@ logger = logging.getLogger(__name__)
 
 base_url = 'http://stats.nba.com'
 base_path = '/stats'
+# headers = {
+#     'User-Agent': 'nba-stats-inspector/0.1.0',
+#     'Accept': '*/*',
+#     'Accept-Encoding': 'gzip, deflate',
+#     'Accept-Language': 'en-US,en;q=0.7'
+# }
 headers = {
-    'User-Agent': 'nba-stats-inspector/0.1.0',
-    'Accept': '*/*',
-    'Accept-Encoding': 'gzip, deflate',
-    'Accept-Language': 'en-US,en;q=0.7'
+    'user-agent': ('Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 '
+                   '(KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'),
+    'Dnt': ('1'),
+    'Accept-Encoding': ('gzip, deflate, sdch'),
+    'Accept-Language': ('en'),
+    'origin': ('http://stats.nba.com')
 }
 
 
@@ -72,8 +80,7 @@ def main():
 def handle_endpoint(doc, endpoint):
     response = get_endpoint(endpoint)
     logger.info(
-        f'{endpoint}: {response.status_code}, '
-        '{response.headers["Content-Type"]}')
+        f'{endpoint}: {response.status_code}, {response.headers["Content-Type"]}')
     if (response.status_code == 200 and
             response.headers['Content-Type'].startswith('text/html')):
         logger.warning(f'{endpoint} is not a valid endpoint')
@@ -125,7 +132,7 @@ def handle_endpoint(doc, endpoint):
 def get_endpoint(endpoint, params={}):
     endpoint_url = ''.join([base_url, base_path, '/', endpoint])
     response = requests.get(endpoint_url, params=params,
-                            headers=headers, timeout=30)
+                            headers=headers, timeout=10)
     # pause after each request so we don't hit the rate limit
     time.sleep(1)
     return response
